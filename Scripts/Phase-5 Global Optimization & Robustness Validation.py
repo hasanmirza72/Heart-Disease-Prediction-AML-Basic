@@ -32,7 +32,7 @@ print("--- Phase 5 Started: Full Portfolio Optimization ---")
 # -------------------------------------------------------------------------
 # SECTION 2: DEFINE HYPERPARAMETER GRIDS
 # -------------------------------------------------------------------------
-# We define specific 'tuning knobs' for every algorithm in our portfolio.
+# Define specific 'tuning knobs' for every algorithm in our portfolio.
 # -------------------------------------------------------------------------
 model_params = {
     "Logistic Regression": {
@@ -81,7 +81,7 @@ optimized_results = []
 # -------------------------------------------------------------------------
 # SECTION 3: THE GLOBAL SEARCH LOOP
 # -------------------------------------------------------------------------
-# We use 5-Fold Cross-Validation to ensure the results are robust
+# Use 5-Fold Cross-Validation to ensure the results are robust
 # and less prone to overfitting compared to a single data split.
 # -------------------------------------------------------------------------
 for name, mp in model_params.items():
