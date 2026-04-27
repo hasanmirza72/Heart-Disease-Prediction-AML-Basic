@@ -65,11 +65,12 @@ A core feature of this project is the transition from initial discovery to robus
 ### Phase 4: Baseline Discovery (80/20 Split)
 Initially, a standard 80/20 train-test split was utilized to establish a baseline. While this yielded high scores, it was susceptible to "optimism bias".
 
-![Performance Comparison](./Visuals/clinical_model_comparison.png)
-*Figure 4: Initial Model comparison*
+![Initial Comparison](./Visuals/clinical_model_comparison.png)
+*Figure 4: Initial results showed high raw accuracy but required further validation*
 
 ### Phase 5: Robust Clinical Audit (5-Fold Cross-Validation)
 To ensure clinical reliability, we implemented **5-Fold Cross-Validation**. GridSearchCV was used to tune hyperparameters—such as $C$ and $gamma$ for SVM—maximizing the **F1-Score** for a balanced diagnostic output.
+**Note:** While metrics adjusted slightly from the baseline, these results are more reliable for real-world clinical application as they minimize overfitting.
 
 ---
 
