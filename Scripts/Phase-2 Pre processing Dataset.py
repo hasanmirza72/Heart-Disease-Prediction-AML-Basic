@@ -12,7 +12,7 @@ from sklearn.impute import KNNImputer
 # -------------------------------------------------------------------------
 # SECTION 1: DATA INGESTION
 # -------------------------------------------------------------------------
-# We load the raw merged dataset created in Phase 1. This modular step
+# Load the raw merged dataset created in Phase 1. This modular step
 # ensures we are working on a stable clinical baseline.
 # -------------------------------------------------------------------------
 input_file = 'heart_disease_raw.csv'
@@ -63,7 +63,7 @@ print("Step 2 Complete: Missing values filled using clinical KNN Imputation.")
 # -------------------------------------------------------------------------
 # SECTION 4: FINAL INTEGRITY CHECK & SUMMARY
 # -------------------------------------------------------------------------
-# Before moving to EDA (Phase 3), we verify that all missing values are
+# Before moving to EDA (Phase 3), verify that all missing values are
 # resolved and check the final balance of our classes.
 # -------------------------------------------------------------------------
 print("\n" + 30 * "=")
@@ -76,7 +76,7 @@ print(30 * "=")
 # -------------------------------------------------------------------------
 # SECTION 5: EXPORT CLEANED DATASET
 # -------------------------------------------------------------------------
-# We save this version as 'heart_disease_cleaned.csv'. This file will
+# Save this version as 'heart_disease_cleaned.csv'. This file will
 # serve as the primary source for our Phase 3 Visualizations.
 # -------------------------------------------------------------------------
 output_file = 'heart_disease_cleaned.csv'
