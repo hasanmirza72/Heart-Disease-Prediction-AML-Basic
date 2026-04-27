@@ -23,7 +23,7 @@ columns = [
 # -------------------------------------------------------------------------
 # SECTION 2: DATA SOURCE DEFINITION (INTERNATIONAL SCOPE)
 # -------------------------------------------------------------------------
-# We track four distinct geographical locations to account for site-specific
+# Track four distinct geographical locations to account for site-specific
 # biases in medical data collection.
 # -------------------------------------------------------------------------
 files = {
@@ -39,7 +39,7 @@ dataframes = []
 # -------------------------------------------------------------------------
 # SECTION 3: SMART DATA INGESTION LOOP
 # -------------------------------------------------------------------------
-# We iterate through each file to perform three critical tasks:
+# Iterate through each file to perform three critical tasks:
 # 1. Labeling: Applying the 14 clinical column names.
 # 2. Missing Value Handling: Mapping '?' to NaN for mathematical processing.
 # 3. Metadata Tagging: Adding a 'hospital' column to preserve the data origin.
@@ -60,7 +60,7 @@ for hospital, file_path in files.items():
 # SECTION 4: DATASET CONCATENATION & INTEGRITY CHECK
 # -------------------------------------------------------------------------
 # Merging individual hospital files into a unified master dataset.
-# We reset the index to provide a continuous row count for the master dataframe.
+# Reset the index to provide a continuous row count for the master dataframe.
 # -------------------------------------------------------------------------
 heart_df = pd.concat(dataframes, ignore_index=True)
 
@@ -74,7 +74,7 @@ print(30 * "=")
 # -------------------------------------------------------------------------
 # SECTION 5: DATA PERSISTENCE (MODULAR SAVING)
 # -------------------------------------------------------------------------
-# We save the raw merged data to a CSV. This modular approach allows for
+# Save the raw merged data to a CSV. This modular approach allows for
 # a clean transition to Phase 2 (Preprocessing) without re-loading raw files.
 # -------------------------------------------------------------------------
 output_filename = 'heart_disease_raw.csv'
