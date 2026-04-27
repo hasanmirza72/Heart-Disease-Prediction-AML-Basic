@@ -70,7 +70,7 @@ Initially, a standard 80/20 train-test split was utilized to establish a baselin
 
 ### Phase 5: Robust Clinical Audit (5-Fold Cross-Validation)
 To ensure clinical reliability, we implemented **5-Fold Cross-Validation**. GridSearchCV was used to tune hyperparameters—such as $C$ and $gamma$ for SVM—maximizing the **F1-Score** for a balanced diagnostic output.
-**Note:** While metrics adjusted slightly from the baseline, these results are more reliable for real-world clinical application as they minimize overfitting.
+* **Note:** While metrics adjusted slightly from the baseline, these results are more reliable for real-world clinical application as they minimize overfitting.
 
 ---
 
