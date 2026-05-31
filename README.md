@@ -207,6 +207,16 @@ Locked to a soft margin strength of $C = 0.1$, the scale gamma coefficient, and 
 
 ## 📈 7. Clinical Performance Audit & Scorecard
 
+### 📊 Baseline Discovery Split (Unoptimized Profiles)
+Evaluating initial out-of-sample unoptimized performance trends over a standard static baseline discovery partition consisting of an eighty-twenty data split:
+
+![Figure 5 - Baseline Discovery Performance Chart](Visuals/figure5_baseline_discovery.png)
+
+### 📊 Robust Clinical Audit (Optimized Portfolio)
+The final out-of-sample performance trends for our robust clinical audit following exhaustive hyperparameter optimization and five-fold cross-validation parameter sweeps:
+
+![Figure 6 - Robust Clinical Audit Final Performance](Visuals/figure6_robust_audit.png)
+
 The optimized portfolio displays the following out-of-sample performance trends derived via robust 5-Fold Cross-Validation on the independent testing partition:
 
 | Classification Architecture | Accuracy | Recall (Safety Margin) | $F_1$-Score | MCC (Robustness Floor) |
