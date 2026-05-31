@@ -43,8 +43,12 @@ pip install -r requirements.txt
 ### 📊 Dataset Staging Constraints
 
 To preserve a lightweight codebase repository structure, raw medical text records are decoupled from core source control parameters:
-* **Primary Source**: Download the raw source archive from the official [UCI Heart Disease Dataset Repository](https://archive.ics.uci.edu/dataset/45/heart+disease).
-* **Local Workspace Allocation**: Extract the target compressed folder to locate the individual multi-hospital files (such as processed.cleveland.data, processed.hungarian.data, processed.switzerland.data, and processed.va.data). Compile these target sub-cohort files into a unified dataset matrix named heart_disease_raw.csv and save it directly inside a directory folder named `Data/` configured within your root repository pathing layout.
+* **Primary Source**
+
+Download the raw source archive from the official [UCI Heart Disease Dataset Repository](https://archive.ics.uci.edu/dataset/45/heart+disease).
+* **Local Workspace Allocation**
+
+Extract the target compressed folder to locate the individual multi-hospital files (such as processed.cleveland.data, processed.hungarian.data, processed.switzerland.data, and processed.va.data). Compile these target sub-cohort files into a unified dataset matrix named heart_disease_raw.csv and save it directly inside a directory folder named `Data/` configured within your root repository pathing layout.
 
 ---
 
@@ -100,16 +104,30 @@ This research project evaluates the predictive utility of five distinct classifi
 
 ### Integrated Framework Core Elements
 
-* **Integrated Clinical Sites**: Cleveland Clinic Foundation (USA), Hungarian Institute of Cardiology (Hungary), University Hospital (Zurich, Switzerland), and VA Medical Center (Long Beach, USA).
-* **Cohort Scale**: Encompasses 920 total patient matrices.
-* **Attribute Dimension Space**: Comprises 13 predictive feature fields mapped across demographic, physiological, metabolic, stress test, anatomical, and electrical diagnostic categories. The linear correlation heatmap matrix expands to a $14 \times 14$ grid because the binary target variable is integrated directly alongside the 13 predictive inputs to map feature-to-target dependencies.
+* **Integrated Clinical Sites**
+
+Cleveland Clinic Foundation (USA), Hungarian Institute of Cardiology (Hungary), University Hospital (Zurich, Switzerland), and VA Medical Center (Long Beach, USA).
+* **Cohort Scale**
+
+Encompasses 920 total patient matrices.
+* **Attribute Dimension Space**
+
+Comprises 13 predictive feature fields mapped across demographic, physiological, metabolic, stress test, anatomical, and electrical diagnostic categories. The linear correlation heatmap matrix expands to a $14 \times 14$ grid because the binary target variable is integrated directly alongside the 13 predictive inputs to map feature-to-target dependencies.
 
 ### Core EDA Anomaly Discoveries
 
-* **Global Class Symmetries**: The combined binary target label displays a balanced distribution consisting of 411 healthy profiles (44.7%) and 509 active disease profiles (55.3%), protecting downstream optimization from majority class collapsing shortcuts.
-* **Geographic Bifurcation**: The Cleveland and Hungary sub-cohorts represent balanced outpatient screening environments. Conversely, the Switzerland (8 normal vs. 115 diseased) and VA Long Beach (50 normal vs. 148 diseased) registries function as high-acuity interventional tertiary units dominated by advanced pathology.
-* **Administrative Recording Artifact**: A heavy, non-physiological spike resting precisely at 0 mg/dl was discovered in the continuous cholesterol distribution. Cross-referencing proved this trace belonged exclusively to the Switzerland and VA Long Beach registries, where lipid panel tests were routinely skipped during emergency intake triage.
-* **Linear Associations**: The variables with the highest positive linear correlation to heart disease are chest pain type (`cp`, $r = 0.47$) and exercise-induced angina (`exang`, $r = 0.45$), while maximum heart rate achieved (`thalach`, $r = -0.39$) exhibits a robust inverse relationship.
+* **Global Class Symmetries**
+
+The combined binary target label displays a balanced distribution consisting of 411 healthy profiles (44.7%) and 509 active disease profiles (55.3%), protecting downstream optimization from majority class collapsing shortcuts.
+* **Geographic Bifurcation**
+
+The Cleveland and Hungary sub-cohorts represent balanced outpatient screening environments. Conversely, the Switzerland (8 normal vs. 115 diseased) and VA Long Beach (50 normal vs. 148 diseased) registries function as high-acuity interventional tertiary units dominated by advanced pathology.
+* **Administrative Recording Artifact**
+
+A heavy, non-physiological spike resting precisely at 0 mg/dl was discovered in the continuous cholesterol distribution. Cross-referencing proved this trace belonged exclusively to the Switzerland and VA Long Beach registries, where lipid panel tests were routinely skipped during emergency intake triage.
+* **Linear Associations**
+
+The variables with the highest positive linear correlation to heart disease are chest pain type (`cp`, $r = 0.47$) and exercise-induced angina (`exang`, $r = 0.45$), while maximum heart rate achieved (`thalach`, $r = -0.39$) exhibits a robust inverse relationship.
 
 ---
 
@@ -145,8 +163,12 @@ $$X_{\text{scaled}} = \frac{X - \mu}{\sigma}$$
 
 To guarantee clean experimental boundaries, scaling parameters are isolated using strict pipeline ordering structures across both project phases:
 
-* **Baseline Eighty-Twenty Split**: The data is split into a static training cohort (80%, 736 records) and a testing cohort (20%, 184 records). The `StandardScaler` computes its structural mean and standard deviation parameters strictly from the training partition alone before transforming the unseen test set.
-* **Final Five-Fold Cross-Validation**: The split scales into an iterative five-fold stratified partitioning framework. Scaling transformations are embedded directly within a pipeline loop, forcing the scaling parameters to recalculate from scratch strictly within the active training fold (80% training data vs. 20% validation data per fold).
+* **Baseline Eighty-Twenty Split**
+
+The data is split into a static training cohort (80%, 736 records) and a testing cohort (20%, 184 records). The `StandardScaler` computes its structural mean and standard deviation parameters strictly from the training partition alone before transforming the unseen test set.
+* **Final Five-Fold Cross-Validation**
+
+The split scales into an iterative five-fold stratified partitioning framework. Scaling transformations are embedded directly within a pipeline loop, forcing the scaling parameters to recalculate from scratch strictly within the active training fold (80% training data vs. 20% validation data per fold).
 
 ---
 
@@ -154,11 +176,21 @@ To guarantee clean experimental boundaries, scaling parameters are isolated usin
 
 Five frameworks were evaluated using a `GridSearchCV` routine optimized specifically for the macro $F_1$-score to enforce balanced decision boundaries across both target categories:
 
-* **Baseline Logistic Regression**: Regularized with an inverse weight of $C = 0.1$ paired with the `lbfgs` optimization solver and restricted to 1000 maximum iterations to apply a strict $L_2$ penalty that suppresses center-specific tracking noise.
-* **Instance-Based K-Nearest Neighbors (KNN)**: Parameterized using a neighborhood pool of 19 consensus nodes, uniform voting weights, and the Manhattan distance ($L_1$ norm) metric to apply a low-pass smoothing filter that prevents wide-magnitude metrics from swamping electrical wave indicators.
-* **Rule-Based Decision Tree**: Restricted to a maximum depth of 5 layers driven by entropy splitting metrics with a minimum split threshold of 10 samples to terminate branches early and enforce structural regularization.
-* **Random Forest Ensemble**: Compiled using 100 independent decision trees initialized with unconstrained depths and the Gini variance impurity criterion to average out uncorrelated classification variances across bootstrap aggregated bags.
-* **Support Vector Machine (SVM)**: Locked to a soft margin strength of $C = 0.1$, the scale gamma coefficient, and a non-linear Radial Basis Function (RBF) transformation kernel to tolerate minor training anomalies and maximize true positive clinical detection boundaries.
+* **Baseline Logistic Regression**
+
+Regularized with an inverse weight of $C = 0.1$ paired with the `lbfgs` optimization solver and restricted to 1000 maximum iterations to apply a strict $L_2$ penalty that suppresses center-specific tracking noise.
+* **Instance-Based K-Nearest Neighbors (KNN)**
+
+Parameterized using a neighborhood pool of 19 consensus nodes, uniform voting weights, and the Manhattan distance ($L_1$ norm) metric to apply a low-pass smoothing filter that prevents wide-magnitude metrics from swamping electrical wave indicators.
+* **Rule-Based Decision Tree**
+
+Restricted to a maximum depth of 5 layers driven by entropy splitting metrics with a minimum split threshold of 10 samples to terminate branches early and enforce structural regularization.
+* **Random Forest Ensemble**
+
+Compiled using 100 independent decision trees initialized with unconstrained depths and the Gini variance impurity criterion to average out uncorrelated classification variances across bootstrap aggregated bags.
+* **Support Vector Machine (SVM)**
+
+Locked to a soft margin strength of $C = 0.1$, the scale gamma coefficient, and a non-linear Radial Basis Function (RBF) transformation kernel to tolerate minor training anomalies and maximize true positive clinical detection boundaries.
 
 ---
 
@@ -178,8 +210,12 @@ The optimized portfolio displays the following out-of-sample performance trends 
 
 Cross-referencing the compiled validation portfolio gallery isolates two clear operational pathways for deployment:
 
-* **The Balanced Auditor (Random Forest)**: Establishes our highest diagnostic robustness floor ($MCC = 0.727$, Accuracy = 86.4%). It successfully isolates 67 true negatives and 92 true positives while limiting false alarms to just 8 false positives, making it ideal for routine hospital resource verification loops.
-* **The High-Sensitivity Screening Line (SVM)**: Delivers an elite clinical safety ceiling by achieving a Recall score of 88.0%. It successfully flags 96 out of 109 true diseased patients and drops critical missed diagnoses down to an absolute low of 13 false negatives, accepting an elevated trade-off of 15 false positives to protect high-stakes preliminary intake lines.
+* **The Balanced Auditor (Random Forest)**
+
+Establishes our highest diagnostic robustness floor ($MCC = 0.727$, Accuracy = 86.4%). It successfully isolates 67 true negatives and 92 true positives while limiting false alarms to just 8 false positives, making it ideal for routine hospital resource verification loops.
+* **The High-Sensitivity Screening Line (SVM)**
+
+Delivers an elite clinical safety ceiling by achieving a Recall score of 88.0%. It successfully flags 96 out of 109 true diseased patients and drops critical missed diagnoses down to an absolute low of 13 false negatives, accepting an elevated trade-off of 15 false positives to protect high-stakes preliminary intake lines.
 
 ---
 
@@ -187,15 +223,30 @@ Cross-referencing the compiled validation portfolio gallery isolates two clear o
 
 Extracting the global feature importance rankings based on the mean decrease in node Gini impurity across the 100 independent trees of the champion Random Forest ensemble verifies that the mathematical gradients converged on organic human biology rather than administrative data shortcuts:
 
-1. **Chest Pain Type (`cp`, Importance: 0.144)**: The primary predictive driver, capturing immediate clinical red flags for active coronary artery obstructions and myocardial ischemia.
-2. **Maximum Heart Rate Achieved (`thalach`, Importance: 0.113)**: Captures the restricted physiological ceiling and loss of cardiovascular reserve capacity typical of ischemic heart tissue under strain.
-3. **Number of Major Vessels (`ca`, Importance: 0.106)**: Tracks anatomical calcification evidence discovered via fluoroscopy imaging.
-4. **Secondary Risk Layers**: Incorporates serum cholesterol (`chol`, Importance: 0.097) to track continuous baseline metabolic risk profiles, and ST depression (`oldpeak`, Importance: 0.093) to parse immediate electrical waveform changes recorded during physical stress testing.
+1. **Chest Pain Type (`cp`, Importance: 0.144)**
+
+The primary predictive driver, capturing immediate clinical red flags for active coronary artery obstructions and myocardial ischemia.
+
+2. **Maximum Heart Rate Achieved (`thalach`, Importance: 0.113)**
+
+Captures the restricted physiological ceiling and loss of cardiovascular reserve capacity typical of ischemic heart tissue under strain.
+
+3. **Number of Major Vessels (`ca`, Importance: 0.106)** 
+
+Tracks anatomical calcification evidence discovered via fluoroscopy imaging.
+
+4. **Secondary Risk Layers** 
+
+Incorporates serum cholesterol (`chol`, Importance: 0.097) to track continuous baseline metabolic risk profiles, and ST depression (`oldpeak`, Importance: 0.093) to parse immediate electrical waveform changes recorded during physical stress testing.
 
 ### 🧪 Methodological Note on Alternative Architecture Logic
 
-* **Standalone Decision Tree Volatility**: While a single tree computes feature splits using similar mechanisms, it lacks bootstrap aggregation safeguards. A single tree is highly sensitive to training variance, risking ranking variables based on localized data noise or site-specific anomalies within an individual hospital registry. The Random Forest averages split importances across 100 uncorrelated paths to provide a stable, generalizable biological ranking.
-* **Support Vector Machine Non-Linear Processing**: Because our optimized support vector machine utilizes a non-linear Radial Basis Function (RBF) kernel, it projects the 13 input fields into a higher-dimensional space to maximize the geometric margin of a separating hyperplane. In this space, variables are mathematically transformed and combined non-linearly. Consequently, individual linear feature weights do not exist for an RBF architecture; the model evaluates complex, compounding physiological interactions rather than tracking isolated, standalone metrics.
+* **Standalone Decision Tree Volatility**
+
+While a single tree computes feature splits using similar mechanisms, it lacks bootstrap aggregation safeguards. A single tree is highly sensitive to training variance, risking ranking variables based on localized data noise or site-specific anomalies within an individual hospital registry. The Random Forest averages split importances across 100 uncorrelated paths to provide a stable, generalizable biological ranking.
+* **Support Vector Machine Non-Linear Processing**
+
+Because our optimized support vector machine utilizes a non-linear Radial Basis Function (RBF) kernel, it projects the 13 input fields into a higher-dimensional space to maximize the geometric margin of a separating hyperplane. In this space, variables are mathematically transformed and combined non-linearly. Consequently, individual linear feature weights do not exist for an RBF architecture; the model evaluates complex, compounding physiological interactions rather than tracking isolated, standalone metrics.
 
 ---
 
@@ -213,10 +264,18 @@ $$\text{Matthews Correlation Coefficient (MCC)} = \frac{TP \times TN - FP \times
 
 ### 📋 Clinical Metric Key
 
-* **True Positive (TP)**: Sick patients correctly identified as having active coronary heart disease.
-* **True Negative (TN)**: Healthy individuals correctly identified as normal.
-* **False Positive (FP)**: Healthy individuals incorrectly identified as sick, generating an unneeded false diagnostic alarm.
-* **False Negative (FN)**: Sick patients incorrectly identified as healthy, representing the single most critical failure rate to minimize in clinical diagnostics.
+* **True Positive (TP)**
+
+Sick patients correctly identified as having active coronary heart disease.
+* **True Negative (TN)**
+
+Healthy individuals correctly identified as normal.
+* **False Positive (FP)**
+
+Healthy individuals incorrectly identified as sick, generating an unneeded false diagnostic alarm.
+* **False Negative (FN)**
+
+Sick patients incorrectly identified as healthy, representing the single most critical failure rate to minimize in clinical diagnostics.
 
 ---
 
