@@ -44,7 +44,7 @@ pip install -r requirements.txt
 
 To preserve a lightweight codebase repository structure, raw medical text records are decoupled from core source control parameters:
 * **Primary Source**: Download the raw source archive from the official [UCI Heart Disease Dataset Repository](https://archive.ics.uci.edu/dataset/45/heart+disease).
-* **Local Workspace Allocation**: Extract the target compressed folder to locate the individual multi-hospital files (such as `processed.cleveland.data`, `processed.hungarian.data`, `processed.switzerland.data`, and `processed.va.data`). Save it directly inside a directory folder named `Data/` configured within your root repository pathing layout.
+* **Local Workspace Allocation**: Extract the target compressed folder to locate the individual multi-hospital files (such as processed.cleveland.data, processed.hungarian.data, processed.switzerland.data, and processed.va.data). Compile these target sub-cohort files into a unified dataset matrix named heart_disease_raw.csv and save it directly inside a directory folder named `Data/` configured within your root repository pathing layout.
 
 ---
 
@@ -57,15 +57,22 @@ Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics/
 ├── requirements.txt            # Unified library constraints ensuring project reproducibility
 ├── README.md                   # Core user onboarding documentation and metric scorecards
 │
-├── Data/                       # Raw Dataset Directory (Decoupled from core version control)
-│   └── raw_uci_heart_disease.csv # Original multi-hospital raw source file containing '?' placeholders
+├── Data/                       # Raw and Engineered Dataset Tracking Repository
+│   ├── processed.cleveland.data   # Raw Cleveland sub-cohort matrix containing '?' placeholders
+│   ├── processed.hungarian.data   # Raw Hungarian sub-cohort matrix containing '?' placeholders
+│   ├── processed.switzerland.data # Raw Zurich sub-cohort matrix containing '?' placeholders
+│   ├── processed.va.data          # Raw Long Beach sub-cohort matrix containing '?' placeholders
+│   ├── heart_disease_raw.csv      # Combined multi-hospital source validation master dataset
+│   └── heart_disease_cleaned.csv  # Final engineered feature space post KNN imputation and normalization
 │
 ├── Scripts/                    # Modular Execution & Model Evaluation Pipelines
-│   ├── phase1_dataset_construction.py # Data integration script combining records across the 4 clinical sites
-│   ├── phase2_preprocessing_pipeline.py # Implements lambda label binning and biomedical KNN multivariate imputation
-│   ├── phase3_model_optimization.py   # GridSearchCV optimization workflow driving macro F1-score extraction
-│   └── phase4_clinical_audit.py       # Validates final parameters via robust stratified 5-fold cross-validation
-│
+│   ├── Phase-1 Dataset Construction.py # Data integration script combining records across the 4 clinical sites
+│   ├── Phase-2 Pre processing Dataset.py # Implements lambda label binning and biomedical KNN multivariate imputation
+│   ├── Phase-3 Exploratory Data Analysis.py # Generates continuous KDE charts and geographic prevalence metrics
+│   ├── Phase-4 Model Training & Evaluation.py # Evaluates unoptimized baseline frameworks over an 80/20 data split
+│   ├── Phase-5 Global Optimization & Robustness Validation.py #Executes parallel grid search optimization across regularization strengths, distance geometries, and tree constraints via 5-fold cross-validation
+│   └── Phase-6 Presentation & Clinical Audit.py # Compiles production matrices and final model scorecards.
+|
 ├── Visuals/                    # Production-Grade Performance Charts & Clinical Graphics
 │   ├── figure1_class_prevalence.png  # Target label bar chart validating global baseline balance (411 vs 509)
 │   ├── figure2_hospital_comparison.png # Multi-centric composition profile tracking regional intake skews
@@ -77,11 +84,9 @@ Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics/
 │   └── figure8_feature_importance.png  # Horizontal bar plot charting global Random Forest Gini impurity cuts
 │
 └── Report/                     # Formal Scholarly Documentation
-    └── Applied_Machine_Learning_Heart_Disease_Triage_Analysis_Report.docx # Complete academic research paper
+    └── Applied_Machine_Learning_Heart_Disease_Triage_Analysis_Report.docx # Complete project report
 
 ```
-
----
 
 ## 📝 3. Abstract & Problem Statement
 
