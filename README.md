@@ -1,9 +1,9 @@
-# 🩺 Heart Disease Prediction: Multi-Hospital Clinical Audit
-> **An Integrated Bioinformatics Study using Ensemble Machine Learning to predict cardiac risk across international clinical sites.**
-
-* **Researcher:** Mirza Muhammad Hasan Ali
-* **Course:** Applied Machine Learning
-* **Status:** Final Robust Performance Audit
+# Predictive Modeling for Multi-Hospital Cardiac Diagnostics
+This repository contains the complete machine learning decision-support architecture and data engineering pipeline developed for the Applied Machine Learning (Basic) course. The architecture transitions an integrated multi-centric clinical database into a stable diagnostic portfolio designed to safely flag coronary artery disease while accounting for real-world administrative recording artifacts and geographic clinical imbalances.
+## 👥 Course Metadata 
+**Name**: Mirza Muhammad Hasan Ali   
+**Course**: Applied Machine Learning (Basic)   
+**Instructors**: Prof. Daniele Bonacorsi & Dr. Luca Clissa   
   
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![Scikit-Learn](https://img.shields.io/badge/Library-Scikit--Learn-orange.svg)
@@ -11,8 +11,20 @@
 
 ---
 
+## 🚀 1. Getting Started & Reproducibility
+
+This section outlines the environment configurations, setup protocols, and dataset staging pipelines mandatory to ensure exact, end-to-end mathematical replication of the clinical audits.
+
+### 📋 Environment Workspace Setup
+Execute repository cloning and initialize local path positioning via terminal execution:
+```bash
+git clone [https://github.com/hasanmirza72/Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics.git](https://github.com/hasanmirza72/Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics.git)
+cd Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics
+
 ## 📌 1. Project Overview
-Cardiovascular diseases remain the leading cause of global mortality. This project investigates the efficacy of machine learning algorithms—Logistic Regression, KNN, Decision Tree, Random Forest, and SVM—in identifying heart disease within an integrated multi-hospital dataset. 
+Cardiovascular diseases remain the leading cause of global mortality. This project investigates the efficacy of machine learning algorithms—Logistic Regression, KNN, Decision Tree, Random Forest, and SVM—in identifying heart disease within an integrated multi-hospital dataset.
+
+
 
 The primary objective was to move beyond standard accuracy-based evaluations, conducting a rigorous clinical audit prioritized by **Matthews Correlation Coefficient (MCC)** and **Recall** to ensure maximum patient safety and model robustness. Through **5-Fold Cross-Validation** and **GridSearchCV** optimization, a robust diagnostic portfolio was developed, identifying the **Random Forest** as the most reliable auditor and the **SVM** as the primary screening tool for high-sensitivity environments.
 
