@@ -119,15 +119,26 @@ Comprises 13 predictive feature fields mapped across demographic, physiological,
 * **Global Class Symmetries**
 
 The combined binary target label displays a balanced distribution consisting of 411 healthy profiles (44.7%) and 509 active disease profiles (55.3%), protecting downstream optimization from majority class collapsing shortcuts.
+
+![Figure 1 - Global Class Prevalence Profile](Visuals/figure1_class_prevalence.png)
+
 * **Geographic Bifurcation**
 
 The Cleveland and Hungary sub-cohorts represent balanced outpatient screening environments. Conversely, the Switzerland (8 normal vs. 115 diseased) and VA Long Beach (50 normal vs. 148 diseased) registries function as high-acuity interventional tertiary units dominated by advanced pathology.
+
+![Figure 2 - Center-Specific Bias and Geographic Variations](Visuals/figure2_hospital_comparison.png)
+
 * **Administrative Recording Artifact**
 
 A heavy, non-physiological spike resting precisely at 0 mg/dl was discovered in the continuous cholesterol distribution. Cross-referencing proved this trace belonged exclusively to the Switzerland and VA Long Beach registries, where lipid panel tests were routinely skipped during emergency intake triage.
+
+![Figure 3 - Feature Scale Discrepancies and Cholesterol Artifact](Visuals/figure3_lipid_anomalies.png)
+
 * **Linear Associations**
 
 The variables with the highest positive linear correlation to heart disease are chest pain type (`cp`, $r = 0.47$) and exercise-induced angina (`exang`, $r = 0.45$), while maximum heart rate achieved (`thalach`, $r = -0.39$) exhibits a robust inverse relationship.
+
+![Figure 4 - Clinical Feature Correlation Heatmap](Visuals/figure4_correlation_matrix.png)
 
 ---
 
@@ -210,6 +221,8 @@ The optimized portfolio displays the following out-of-sample performance trends 
 
 Cross-referencing the compiled validation portfolio gallery isolates two clear operational pathways for deployment:
 
+![Figure 7 - Diagnostic Validation Portfolio Gallery](Visuals/figure7_confusion_matrices.png)
+
 * **The Balanced Auditor (Random Forest)**
 
 Establishes our highest diagnostic robustness floor ($MCC = 0.727$, Accuracy = 86.4%). It successfully isolates 67 true negatives and 92 true positives while limiting false alarms to just 8 false positives, making it ideal for routine hospital resource verification loops.
@@ -222,6 +235,8 @@ Delivers an elite clinical safety ceiling by achieving a Recall score of 88.0%. 
 ## 🩺 8. Explainable Medical Logic Validation
 
 Extracting the global feature importance rankings based on the mean decrease in node Gini impurity across the 100 independent trees of the champion Random Forest ensemble verifies that the mathematical gradients converged on organic human biology rather than administrative data shortcuts:
+
+![Figure 8 - Clinical Feature Importance](Visuals/figure8_feature_importance.png)
 
 1. **Chest Pain Type (`cp`, Importance: 0.144)**
 
