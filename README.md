@@ -1,13 +1,19 @@
 # Predictive Modeling for Multi-Hospital Cardiac Diagnostics
-This repository contains the complete machine learning decision-support architecture and data engineering pipeline developed for the Applied Machine Learning (Basic) course. The architecture transitions an integrated multi-centric clinical database into a stable diagnostic portfolio designed to safely flag coronary artery disease while accounting for real-world administrative recording artifacts and geographic clinical imbalances.
-## 👥 Course Metadata 
-**Name**: Mirza Muhammad Hasan Ali   
-**Course**: Applied Machine Learning (Basic)   
-**Instructors**: Prof. Daniele Bonacorsi & Dr. Luca Clissa   
-  
+
+This repository contains the complete machine learning decision-support architecture and data engineering pipeline developed for the *Applied Machine Learning (Basic)* course. The architecture transitions an integrated multi-centric clinical database into a stable diagnostic portfolio designed to safely flag coronary artery disease while accounting for real-world administrative recording artifacts and geographic clinical imbalances.
+
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![Scikit-Learn](https://img.shields.io/badge/Library-Scikit--Learn-orange.svg)
 ![Area](https://img.shields.io/badge/Field-Bioinformatics-red.svg)
+---
+
+## 👥 Course Metadata
+
+**Student Name**: Mirza Muhammad Hasan Ali 
+
+**Course**: Applied Machine Learning (Basic)
+
+**Instructors**: Prof. Daniele Bonacorsi & Dr. Luca Clissa 
 
 ---
 
@@ -16,127 +22,204 @@ This repository contains the complete machine learning decision-support architec
 This section outlines the environment configurations, setup protocols, and dataset staging pipelines mandatory to ensure exact, end-to-end mathematical replication of the clinical audits.
 
 ### 📋 Environment Workspace Setup
+
 Execute repository cloning and initialize local path positioning via terminal execution:
+
 ```bash
-git clone [https://github.com/hasanmirza72/Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics.git](https://github.com/hasanmirza72/Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics.git)
-cd Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics
+git clone https://github.com/hasanmirza72/Heart-Disease-Prediction-AML-Basic.git
+cd Heart-Disease-Prediction-AML-Basic
 
-## 📌 1. Project Overview
-Cardiovascular diseases remain the leading cause of global mortality. This project investigates the efficacy of machine learning algorithms—Logistic Regression, KNN, Decision Tree, Random Forest, and SVM—in identifying heart disease within an integrated multi-hospital dataset.
+```
 
+### 📦 Dependency Manifest Installation
 
+Deploy the certified external libraries using the unified package manager to prevent local environmental runtime mismatches:
 
-The primary objective was to move beyond standard accuracy-based evaluations, conducting a rigorous clinical audit prioritized by **Matthews Correlation Coefficient (MCC)** and **Recall** to ensure maximum patient safety and model robustness. Through **5-Fold Cross-Validation** and **GridSearchCV** optimization, a robust diagnostic portfolio was developed, identifying the **Random Forest** as the most reliable auditor and the **SVM** as the primary screening tool for high-sensitivity environments.
+```bash
+pip install -r requirements.txt
 
----
+```
 
-## 🧪 2. Dataset Architecture: International Integration
-Unlike single-center studies, this project utilizes the full scope of the UCI Heart Disease database to account for geographical and demographic variations in cardiac health.
+### 📊 Dataset Staging Constraints
 
-* **Integrated Clinical Sites:** Cleveland (USA), Hungary, Switzerland, and VA Long Beach (USA).
-* **Integrated Volume:** 920 total clinical records.
-* **Predictive Attributes:** 13 clinical features categorized into Demographic (Age, Sex), Physiological (Blood Pressure, Cholesterol), Diagnostic (Chest Pain, Heart Rate), and Anatomical markers.
+To maintain a lightweight codebase repository structure, raw medical text records are decoupled from core version control parameters:
 
-![Hospital Comparison](./Visuals/eda_hospital_comparison.png)
-*Figure 1: Distribution of records and disease prevalence across the four international sites.*
-
----
-
-## ⚙️ 3. Clinical Preprocessing & Feature Engineering
-Medical data integrity is the cornerstone of clinical AI. Three advanced strategies were employed:
-
-### 3.1 Label Binning & Medical Logic
-The raw "Target" variable was binned into a binary state—0 (Healthy) and 1 (Diseased)—to prioritize primary screening utility. 
-
-![Class Distribution](./Visuals/eda_class_distribution.png)
-*Figure 2: Final balanced class distribution after binary encoding.*
-
-### 3.2 Advanced KNN Imputation ($k=5$)
-Conventional methods often discard incomplete rows, which would have resulted in the loss of 66% of this dataset. Instead, **K-Nearest Neighbors (KNN) Imputation** was used to fill gaps in features like `ca` (611 missing) and `thal` (486 missing) by analyzing similar patient profiles.
-
-### 3.3 Feature Scaling & Initial Validation
-* **StandardScaler:** Normalizes inputs to a mean of 0 and standard deviation of 1 to prevent high-scale features like Cholesterol from overpowering sensitive indicators like ST Depression.
-* **80/20 Split:** An initial baseline was established using an 80% training and 20% validation split.
+* **Primary Source**: Download the source integrated files from the official UCI Machine Learning Repository (Heart Disease Dataset).
+* **Local Workspace Allocation**: Create a directory folder named `Data/` within your root repository pathing layout and save the compiled records as `raw_uci_heart_disease.csv`.
 
 ---
 
-## 📈 4. Exploratory Data Analysis (EDA)
-* **Clinical Site Bias:** Cross-hospital analysis revealed that the Switzerland site primarily contributed diseased cases, while Cleveland and Hungary were more balanced.
-* **The Cholesterol Artifact:** EDA identified a significant spike at **$0 \text{ mg/dl}$** in the Switzerland and VA data, identified as a recording artifact.
-* **Correlation Analysis:** Strong correlations were found between **Chest Pain Type (`cp`)** and **Exercise Angina (`exang`)** with the disease state.
+## 🏗️ 2. Project Layout & Structure
 
-![Clinical Distributions](./Visuals/eda_clinical_distributions.png)
-![Correlation Heatmap](./Visuals/eda_correlation_heatmap.png)
-*Figure 3: Physiological insights showing age-risk trends, cholesterol artifacts, and clinical feature correlations.*
+The repository architecture is strictly modularized to cleanly separate raw data streams, clinical preprocessing engines, grid-search hyperparameter tuning loops, reporting visual assets, and formal scholarly records:
 
----
+```text
+Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics/
+├── requirements.txt            # Unified library constraints ensuring project reproducibility
+├── README.md                   # Core user onboarding documentation and metric scorecards
+│
+├── Data/                       # Raw Dataset Directory (Decoupled from core version control)
+│   └── raw_uci_heart_disease.csv # Original multi-hospital raw source file containing '?' placeholders
+│
+├── Scripts/                    # Modular Execution & Model Evaluation Pipelines
+│   ├── phase1_dataset_construction.py # Data integration script combining records across the 4 clinical sites
+│   ├── phase2_preprocessing_pipeline.py # Implements lambda label binning and biomedical KNN multivariate imputation
+│   ├── phase3_model_optimization.py   # GridSearchCV optimization workflow driving macro F1-score extraction
+│   └── phase4_clinical_audit.py       # Validates final parameters via robust stratified 5-fold cross-validation
+│
+├── Visuals/                    # Production-Grade Performance Charts & Clinical Graphics
+│   ├── figure1_class_prevalence.png  # Target label bar chart validating global baseline balance (411 vs 509)
+│   ├── figure2_hospital_comparison.png # Multi-centric composition profile tracking regional intake skews
+│   ├── figure3_lipid_anomalies.png     # Continuous KDE curves isolating the non-physiological 0 mg/dl artifact
+│   ├── figure4_correlation_matrix.png  # 14x14 product-moment correlation matrix mapping feature dependencies
+│   ├── figure5_baseline_discovery.png  # Metric trends for unoptimized models evaluated over an 80/20 data split
+│   ├── figure6_robust_audit.png        # Performance bar chart displaying optimized 5-fold cross-validation trends
+│   ├── figure7_confusion_matrices.png  # 5-Model multi-grid matrix gallery tracking true/false error quadrants
+│   └── figure8_feature_importance.png  # Horizontal bar plot charting global Random Forest Gini impurity cuts
+│
+└── Report/                     # Formal Scholarly Documentation
+    └── Applied_Machine_Learning_Heart_Disease_Triage_Analysis_Report.docx # Complete academic research paper
 
-## 📈 5. The Validation Journey: From Baseline to Robustness
-A core feature of this project is the transition from initial discovery to robust scientific validation.
-
-### Phase 4: Baseline Discovery (80/20 Split)
-Initially, a standard 80/20 train-test split was utilized to establish a baseline. While this yielded high scores, it was susceptible to "optimism bias".
-
-![Initial Comparison](./Visuals/clinical_model_comparison.png)
-*Figure 4: Initial results showed high raw accuracy but required further validation*
-
-### Phase 5: Robust Clinical Audit (5-Fold Cross-Validation)
-To ensure clinical reliability, we implemented **5-Fold Cross-Validation**. GridSearchCV was used to tune hyperparameters—such as $C$ and $gamma$ for SVM—maximizing the **F1-Score** for a balanced diagnostic output.
-* **Note:** While metrics adjusted slightly from the baseline, these results are more reliable for real-world clinical application as they minimize overfitting.
-
----
-
-## 🏆 6. Results: The Final Performance Audit
-The final models were ranked by **MCC**, the gold standard for clinical binary classification.
-
-| Model | Accuracy | Recall (Safety) | F1-Score | MCC (Robustness) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Random Forest** | **86.4%** | 84.4% | **0.880** | **0.727** |
-| **K-Neighbors** | 85.8% | 83.4% | 0.875 | 0.717 |
-| **SVM** | 80.9% | **88.0%** | 0.829 | 0.622 |
-| **Logistic Reg.** | 82.6% | 80.7% | 0.846 | 0.651 |
-| **Decision Tree** | 78.8% | 75.2% | 0.807 | 0.582 |
-
-![Final Performance Comparison](./Visuals/final_performance_comparison.png)
-*Figure 5: Comparative performance audit of five optimized models across four primary clinical metrics.*
-
-### 💡 Diagnostic Insights
-* **The Champion (Random Forest):** Achieved the highest MCC ($0.727$), proving most reliable across multi-center data.
-* **The Safety Net (SVM):** Achieved the highest Recall ($88\%$), minimizing "False Negatives" where a sick patient is incorrectly sent home.
-
-![Confusion Matrix Portfolio](./Visuals/final_confusion_matrix_portfolio.png)
-*Figure 6: Diagnostic Portfolio showing classification gaps and error distribution for all audited models.*
+```
 
 ---
 
-## 🧬 7. Discussion: Feature Significance
-The AI's diagnostic logic aligns with established cardiological guidelines. The model prioritized:
-1. **Chest Pain Type (`cp`):** Primary physiological indicator of ischemia.
-2. **Max Heart Rate (`thalach`):** Surrogate for cardiac output under stress.
-3. **Major Vessels (`ca`):** Direct indicator of coronary artery disease.
+## 📝 3. Abstract & Problem Statement
 
-![Feature Importance](./Visuals/final_feature_importance.png)
-*Figure 7: Global feature importance ranking, highlighting the diagnostic weight of chest pain and heart rate.*
+Cardiovascular diseases remain the leading etiology of global human mortality, creating a profound diagnostic challenge for international triage infrastructure. While conventional clinical interpretation relies heavily on subjective practitioner experience, applied machine learning provides an objective secondary validation pathway by isolating complex, non-linear feature interactions hidden within multi-variate physiological records.
+
+This research project evaluates the predictive utility of five distinct classification frameworks initialized over an integrated clinical dataset spanning four international healthcare facilities. Moving beyond naive, accuracy-centric evaluation models which generate massive blind spots when handling asymmetric data densities, this study establishes a safety-critical evaluation framework driven by the Matthews Correlation Coefficient ($MCC$) and true positive sensitivity ($Recall$). By executing regularized 5-Fold Cross-Validation alongside exhaustive hyperparameter optimization via `GridSearchCV`, this study builds a reliable diagnostic portfolio, identifying an optimized Random Forest ensemble as our most robust diagnostic auditor and an RBF-kernel Support Vector Machine as our premier high-sensitivity screening tool.
 
 ---
 
-## 📐 8. Mathematical Audit Formulas
-To evaluate clinical performance, the following mathematical metrics were utilized:
+## 📊 4. Dataset & Exploratory Data Analysis (EDA) Summary
 
-* **Accuracy:** Overall diagnostic correctness.
-  $$Accuracy = \frac{TP + TN}{TP + TN + FP + FN}$$
-* **Recall (Sensitivity):** Ability to catch all diseased cases (Primary Safety Metric).
-  $$Recall = \frac{TP}{TP + FN}$$
-* **MCC:** The most reliable clinical metric accounting for all four quadrants of the confusion matrix.
-  $$MCC = \frac{TP \cdot TN - FP \cdot FN}{\sqrt{(TP + FP)(TP + FN)(TN + FP)(TN + FN)}}$$
+### Integrated Framework Core Elements
+
+* **Integrated Clinical Sites**: Cleveland Clinic Foundation (USA), Hungarian Institute of Cardiology (Hungary), University Hospital (Zurich, Switzerland), and VA Medical Center (Long Beach, USA).
+* **Cohort Scale**: Encompasses 920 total patient matrices.
+* **Attribute Dimension Space**: Comprises 13 predictive feature fields mapped across demographic, physiological, metabolic, stress test, anatomical, and electrical diagnostic categories. The linear correlation heatmap matrix expands to a $14 \times 14$ grid because the binary target variable is integrated directly alongside the 13 predictive inputs to map feature-to-target dependencies.
+
+### Core EDA Anomaly Discoveries
+
+* **Global Class Symmetries**: The combined binary target label displays a balanced distribution consisting of 411 healthy profiles (44.7%) and 509 active disease profiles (55.3%), protecting downstream optimization from majority class collapsing shortcuts.
+* **Geographic Bifurcation**: The Cleveland and Hungary sub-cohorts represent balanced outpatient screening environments. Conversely, the Switzerland (8 normal vs. 115 diseased) and VA Long Beach (50 normal vs. 148 diseased) registries function as high-acuity interventional tertiary units dominated by advanced pathology.
+* **Administrative Recording Artifact**: A heavy, non-physiological spike resting precisely at 0 mg/dl was discovered in the continuous cholesterol distribution. Cross-referencing proved this trace belonged exclusively to the Switzerland and VA Long Beach registries, where lipid panel tests were routinely skipped during emergency intake triage.
+* **Linear Associations**: The variables with the highest positive linear correlation to heart disease are chest pain type (`cp`, $r = 0.47$) and exercise-induced angina (`exang`, $r = 0.45$), while maximum heart rate achieved (`thalach`, $r = -0.39$) exhibits a robust inverse relationship.
 
 ---
 
-## 📂 9. Project Structure
-* **`/Data`**: Contains the `heart_disease_cleaned.csv`.
-* **`/Scripts`**: Phase 1 through Phase 6 Python scripts.
-* **`/Visuals`**: High-resolution clinical plots and matrices.
-* **`/Report`**: Final 8-page PDF clinical report.
+## ⚙️ 5. Data Preprocessing & Engineering Pipeline
 
-## 🏁 10. Conclusion
-This study confirms that while multi-center medical data is often inconsistent and "noisy," ensemble machine learning—when combined with rigorous cross-validation—can extract universal cardiac risk patterns to support life-saving clinical decisions.
+To resolve the architectural scale variances, geographic skews, and zero-masked tracking artifacts uncovered during the exploratory data analysis phase, raw records pass through an automated mathematical engineering sequence:
+
+### 💡 Target Re-Formulation (Label Binning)
+
+The multi-stage coronary artery disease severity index (Stages 0–4) is transformed into a safety-critical binary target framework using a specialized lambda mapping script:
+
+$$Y = 0 \quad \text{if raw stage} = 0 \ (\text{healthy})$$
+
+$$Y = 1 \quad \text{if raw stage} \in \{1, 2, 3, 4\} \ (\text{diseased})$$
+
+### 💡 Algorithmic Missing Value Reconstruction
+
+To prevent a catastrophic loss of 66% of overall rows caused by listwise deletion, a K-Nearest Neighbors (`KNNImputer`) setup is deployed with $k=5$. Proximity across the remaining numeric variables is determined using a pairwise, NaN-adjusted Euclidean distance formula:
+
+$$d(x,y) = \sqrt{\frac{m}{p} \sum_{i \in \text{valid}} (x_i - y_i)^2}$$
+
+where $p$ represents the count of valid features present in both vectors, and $m$ represents the total feature dimension space of 13 attributes. The missing or zero-masked elements are then reconstructed via local unweighted neighbor averaging:
+
+$$x_{\text{imputed}} = \frac{1}{k} \sum_{j=1}^{k} N_j$$
+
+### 💡 Z-Score Standardization
+
+To neutralize severe scale variations across continuous measurements (e.g., cholesterol expanding up to 603 mg/dl swacking a tight fractional ST waveform reading), features are normalized to prevent spatial distance distortion inside distance-sensitive frameworks:
+
+$$X_{\text{scaled}} = \frac{X - \mu}{\sigma}$$
+
+### 💡 Data Leakage Safeguards
+
+To guarantee clean experimental boundaries, scaling parameters are isolated using strict pipeline ordering structures across both project phases:
+
+* **Baseline Eighty-Twenty Split**: The data is split into a static training cohort (80%, 736 records) and a testing cohort (20%, 184 records). The `StandardScaler` computes its structural mean and standard deviation parameters strictly from the training partition alone before transforming the unseen test set.
+* **Final Five-Fold Cross-Validation**: The split scales into an iterative five-fold stratified partitioning framework. Scaling transformations are embedded directly within a pipeline loop, forcing the scaling parameters to recalculate from scratch strictly within the active training fold (80% training data vs. 20% validation data per fold).
+
+---
+
+## 🧠 6. Model Portfolio & Hyperparameter Configurations
+
+Five frameworks were evaluated using a `GridSearchCV` routine optimized specifically for the macro $F_1$-score to enforce balanced decision boundaries across both target categories:
+
+* **Baseline Logistic Regression**: Regularized with an inverse weight of $C = 0.1$ paired with the `lbfgs` optimization solver and restricted to 1000 maximum iterations to apply a strict $L_2$ penalty that suppresses center-specific tracking noise.
+* **Instance-Based K-Nearest Neighbors (KNN)**: Parameterized using a neighborhood pool of 19 consensus nodes, uniform voting weights, and the Manhattan distance ($L_1$ norm) metric to apply a low-pass smoothing filter that prevents wide-magnitude metrics from swamping electrical wave indicators.
+* **Rule-Based Decision Tree**: Restricted to a maximum depth of 5 layers driven by entropy splitting metrics with a minimum split threshold of 10 samples to terminate branches early and enforce structural regularization.
+* **Random Forest Ensemble**: Compiled using 100 independent decision trees initialized with unconstrained depths and the Gini variance impurity criterion to average out uncorrelated classification variances across bootstrap aggregated bags.
+* **Support Vector Machine (SVM)**: Locked to a soft margin strength of $C = 0.1$, the scale gamma coefficient, and a non-linear Radial Basis Function (RBF) transformation kernel to tolerate minor training anomalies and maximize true positive clinical detection boundaries.
+
+---
+
+## 📈 7. Clinical Performance Audit & Scorecard
+
+The optimized portfolio displays the following out-of-sample performance trends derived via robust 5-Fold Cross-Validation on the independent testing partition:
+
+| Classification Architecture | Accuracy | Recall (Safety Margin) | $F_1$-Score | MCC (Robustness Floor) |
+| --- | --- | --- | --- | --- |
+| **Random Forest Ensemble** | 86.4% | 84.4% | 0.880 | **0.727** |
+| **K-Nearest Neighbors** | 85.8% | 83.4% | 0.875 | 0.717 |
+| **Logistic Regression Baseline** | 82.6% | 80.7% | 0.846 | 0.651 |
+| **Support Vector Machine (SVM)** | 80.9% | **88.0%** | 0.829 | 0.622 |
+| **Decision Tree (Control Node)** | 78.8% | 75.2% | 0.808 | 0.573 |
+
+### 🩺 Deep-Dive Confusion Matrix Interpretations
+
+Cross-referencing the compiled validation portfolio gallery isolates two clear operational pathways for deployment:
+
+* **The Balanced Auditor (Random Forest)**: Establishes our highest diagnostic robustness floor ($MCC = 0.727$, Accuracy = 86.4%). It successfully isolates 67 true negatives and 92 true positives while limiting false alarms to just 8 false positives, making it ideal for routine hospital resource verification loops.
+* **The High-Sensitivity Screening Line (SVM)**: Delivers an elite clinical safety ceiling by achieving a Recall score of 88.0%. It successfully flags 96 out of 109 true diseased patients and drops critical missed diagnoses down to an absolute low of 13 false negatives, accepting an elevated trade-off of 15 false positives to protect high-stakes preliminary intake lines.
+
+---
+
+## 🩺 8. Explainable Medical Logic Validation
+
+Extracting the global feature importance rankings based on the mean decrease in node Gini impurity across the 100 independent trees of the champion Random Forest ensemble verifies that the mathematical gradients converged on organic human biology rather than administrative data shortcuts:
+
+1. **Chest Pain Type (`cp`, Importance: 0.144)**: The primary predictive driver, capturing immediate clinical red flags for active coronary artery obstructions and myocardial ischemia.
+2. **Maximum Heart Rate Achieved (`thalach`, Importance: 0.113)**: Captures the restricted physiological ceiling and loss of cardiovascular reserve capacity typical of ischemic heart tissue under strain.
+3. **Number of Major Vessels (`ca`, Importance: 0.106)**: Tracks anatomical calcification evidence discovered via fluoroscopy imaging.
+4. **Secondary Risk Layers**: Incorporates serum cholesterol (`chol`, Importance: 0.097) to track continuous baseline metabolic risk profiles, and ST depression (`oldpeak`, Importance: 0.093) to parse immediate electrical waveform changes recorded during physical stress testing.
+
+### 🧪 Methodological Note on Alternative Architecture Logic
+
+* **Standalone Decision Tree Volatility**: While a single tree computes feature splits using similar mechanisms, it lacks bootstrap aggregation safeguards. A single tree is highly sensitive to training variance, risking ranking variables based on localized data noise or site-specific anomalies within an individual hospital registry. The Random Forest averages split importances across 100 uncorrelated paths to provide a stable, generalizable biological ranking.
+* **Support Vector Machine Non-Linear Processing**: Because our optimized support vector machine utilizes a non-linear Radial Basis Function (RBF) kernel, it projects the 13 input fields into a higher-dimensional space to maximize the geometric margin of a separating hyperplane. In this space, variables are mathematically transformed and combined non-linearly. Consequently, individual linear feature weights do not exist for an RBF architecture; the model evaluates complex, compounding physiological interactions rather than tracking isolated, standalone metrics.
+
+---
+
+## 📊 9. Mathematical Audit Specifications
+
+To maintain absolute scientific transparency, all downstream evaluation metrics are derived directly from the four primary quadrants of the validation confusion matrix:
+
+$$\text{Overall Classification Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$$
+
+$$\text{Recall / Sensitivity (Clinical Safety)} = \frac{TP}{TP + FN}$$
+
+$$F_1\text{-Score (Harmonic Performance Mean)} = \frac{2 \times TP}{2 \times TP + FP + FN}$$
+
+$$\text{Matthews Correlation Coefficient (MCC)} = \frac{TP \times TN - FP \times FN}{\sqrt{(TP + FP)(TP + FN)(TN + FP)(TN + FN)}}$$
+
+### 📋 Clinical Metric Key
+
+* **True Positive (TP)**: Sick patients correctly identified as having active coronary heart disease.
+* **True Negative (TN)**: Healthy individuals correctly identified as normal.
+* **False Positive (FP)**: Healthy individuals incorrectly identified as sick, generating an unneeded false diagnostic alarm.
+* **False Negative (FN)**: Sick patients incorrectly identified as healthy, representing the single most critical failure rate to minimize in clinical diagnostics.
+
+---
+
+## 🏆 10. Conclusion & Operational Directives
+
+This research project successfully demonstrates the transition from a messy, multi-centric clinical database into a highly stable, machine learning decision-support architecture. By utilizing an advanced data engineering pipeline driven by biomedical K-Nearest Neighbors multivariate imputation and strict stratified standardization, we successfully resolved intense multi-hospital collection skews and administrative recording artifacts without corrupting the underlying physiological dataset logic.
+
+Our final performance evaluation outlines a powerful diagnostic portfolio. For routine verification and hospital resource auditing tasks, the Random Forest ensemble provides the most reliable balance across all metrics ($MCC = 0.727$). For high-stakes preliminary screening lines where minimizing missed diagnoses is the single most critical task, the Support Vector Machine provides an elite clinical safety ceiling (88.0% Recall), ensuring high diagnostic protection across diverse patient cohorts.
+
+Ultimately, this study proves that machine learning models can extract universal cardiovascular risk structures from diverse data sources, provided that data-cleaning decisions are actively guided by exploratory domain auditing. To expand this pipeline further, the next logical engineering phase must involve testing these architectures against an entirely external, unintegrated hospital cohort to actively evaluate cross-border domain adaptation and algorithmic generalization boundaries under varying institutional testing constraints.
