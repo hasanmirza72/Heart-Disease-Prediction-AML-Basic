@@ -78,14 +78,14 @@ Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics/
 │   └── Phase-6 Presentation & Clinical Audit.py # Compiles production matrices and final model scorecards.
 |
 ├── Visuals/                    # Production-Grade Performance Charts & Clinical Graphics
-│   ├── figure1_class_prevalence.png  # Target label bar chart validating global baseline balance (411 vs 509)
-│   ├── figure2_hospital_comparison.png # Multi-centric composition profile tracking regional intake skews
-│   ├── figure3_lipid_anomalies.png     # Continuous KDE curves isolating the non-physiological 0 mg/dl artifact
-│   ├── figure4_correlation_matrix.png  # 14x14 product-moment correlation matrix mapping feature dependencies
-│   ├── figure5_baseline_discovery.png  # Metric trends for unoptimized models evaluated over an 80/20 data split
-│   ├── figure6_robust_audit.png        # Performance bar chart displaying optimized 5-fold cross-validation trends
-│   ├── figure7_confusion_matrices.png  # 5-Model multi-grid matrix gallery tracking true/false error quadrants
-│   └── figure8_feature_importance.png  # Horizontal bar plot charting global Random Forest Gini impurity cuts
+│   ├── eda_class_distribution.png     # Target label bar chart validating global baseline balance (411 vs 509)
+│   ├── eda_hospital_comparison.png    # Multi-centric composition profile tracking regional intake skews
+│   ├── eda_clinical_distributions.png # Continuous KDE curves isolating the non-physiological 0 mg/dl artifact
+│   ├── eda_correlation_heatmap.png    # 14x14 product-moment correlation matrix mapping feature dependencies
+│   ├── clinical_model_comparison.png  # Metric trends for unoptimized models evaluated over an 80/20 data split
+│   ├── final_performance_comparison.png # Performance bar chart displaying optimized 5-fold cross-validation trends
+│   ├── final_confusion_matrix_portfolio.png # 5-Model multi-grid matrix gallery tracking true/false error quadrants
+│   └── final_feature_importance.png   # Horizontal bar plot charting global Random Forest Gini impurity cuts
 │
 └── Report/                     # Formal Scholarly Documentation
     └── Applied_Machine_Learning_Heart_Disease_Triage_Analysis_Report.docx # Complete project report
@@ -120,25 +120,25 @@ Comprises 13 predictive feature fields mapped across demographic, physiological,
 
 The combined binary target label displays a balanced distribution consisting of 411 healthy profiles (44.7%) and 509 active disease profiles (55.3%), protecting downstream optimization from majority class collapsing shortcuts.
 
-![Figure 1 - Global Class Prevalence Profile](Visuals/figure1_class_prevalence.png)
+![Figure 1 - Global Class Prevalence Profile](Visuals/eda_class_distribution.png)
 
 * **Geographic Bifurcation**
 
 The Cleveland and Hungary sub-cohorts represent balanced outpatient screening environments. Conversely, the Switzerland (8 normal vs. 115 diseased) and VA Long Beach (50 normal vs. 148 diseased) registries function as high-acuity interventional tertiary units dominated by advanced pathology.
 
-![Figure 2 - Center-Specific Bias and Geographic Variations](Visuals/figure2_hospital_comparison.png)
+![Figure 2 - Center-Specific Bias and Geographic Variations](Visuals/eda_hospital_comparison.png)
 
 * **Administrative Recording Artifact**
 
 A heavy, non-physiological spike resting precisely at 0 mg/dl was discovered in the continuous cholesterol distribution. Cross-referencing proved this trace belonged exclusively to the Switzerland and VA Long Beach registries, where lipid panel tests were routinely skipped during emergency intake triage.
 
-![Figure 3 - Feature Scale Discrepancies and Cholesterol Artifact](Visuals/figure3_lipid_anomalies.png)
+![Figure 3 - Feature Scale Discrepancies and Cholesterol Artifact](Visuals/eda_clinical_distributions.png)
 
 * **Linear Associations**
 
 The variables with the highest positive linear correlation to heart disease are chest pain type (`cp`, $r = 0.47$) and exercise-induced angina (`exang`, $r = 0.45$), while maximum heart rate achieved (`thalach`, $r = -0.39$) exhibits a robust inverse relationship.
 
-![Figure 4 - Clinical Feature Correlation Heatmap](Visuals/figure4_correlation_matrix.png)
+![Figure 4 - Clinical Feature Correlation Heatmap](Visuals/eda_correlation_heatmap.png)
 
 ---
 
@@ -210,12 +210,12 @@ Locked to a soft margin strength of $C = 0.1$, the scale gamma coefficient, and 
 ### 📊 Baseline Discovery Split (Unoptimized Profiles)
 Evaluating initial out-of-sample unoptimized performance trends over a standard static baseline discovery partition consisting of an eighty-twenty data split:
 
-![Figure 5 - Baseline Discovery Performance Chart](Visuals/figure5_baseline_discovery.png)
+![Figure 5 - Baseline Discovery Performance Chart](Visuals/clinical_model_comparison.png)
 
 ### 📊 Robust Clinical Audit (Optimized Portfolio)
 The final out-of-sample performance trends for our robust clinical audit following exhaustive hyperparameter optimization and five-fold cross-validation parameter sweeps:
 
-![Figure 6 - Robust Clinical Audit Final Performance](Visuals/figure6_robust_audit.png)
+![Figure 6 - Robust Clinical Audit Final Performance](Visuals/final_performance_comparison.png)
 
 The optimized portfolio displays the following out-of-sample performance trends derived via robust 5-Fold Cross-Validation on the independent testing partition:
 
@@ -231,7 +231,7 @@ The optimized portfolio displays the following out-of-sample performance trends 
 
 Cross-referencing the compiled validation portfolio gallery isolates two clear operational pathways for deployment:
 
-![Figure 7 - Diagnostic Validation Portfolio Gallery](Visuals/figure7_confusion_matrices.png)
+![Figure 7 - Diagnostic Validation Portfolio Gallery](Visuals/final_confusion_matrix_portfolio.png)
 
 * **The Balanced Auditor (Random Forest)**
 
@@ -246,7 +246,7 @@ Delivers an elite clinical safety ceiling by achieving a Recall score of 88.0%. 
 
 Extracting the global feature importance rankings based on the mean decrease in node Gini impurity across the 100 independent trees of the champion Random Forest ensemble verifies that the mathematical gradients converged on organic human biology rather than administrative data shortcuts:
 
-![Figure 8 - Clinical Feature Importance](Visuals/figure8_feature_importance.png)
+![Figure 8 - Clinical Feature Importance](Visuals/final_feature_importance.png)
 
 1. **Chest Pain Type (`cp`, Importance: 0.144)**
 
