@@ -42,10 +42,9 @@ pip install -r requirements.txt
 
 ### 📊 Dataset Staging Constraints
 
-To maintain a lightweight codebase repository structure, raw medical text records are decoupled from core version control parameters:
-
-* **Primary Source**: Download the source integrated files from the official UCI Machine Learning Repository (Heart Disease Dataset).
-* **Local Workspace Allocation**: Create a directory folder named `Data/` within your root repository pathing layout and save the compiled records as `raw_uci_heart_disease.csv`.
+To preserve a lightweight codebase repository structure, raw medical text records are decoupled from core source control parameters:
+* **Primary Source**: Download the raw source archive from the official [UCI Heart Disease Dataset Repository](https://archive.ics.uci.edu/dataset/45/heart+disease).
+* **Local Workspace Allocation**: Extract the target compressed folder to locate the individual multi-hospital files (such as `processed.cleveland.data`, `processed.hungarian.data`, `processed.switzerland.data`, and `processed.va.data`). Save it directly inside a directory folder named `Data/` configured within your root repository pathing layout.
 
 ---
 
