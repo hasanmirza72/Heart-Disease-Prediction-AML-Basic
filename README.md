@@ -1,19 +1,16 @@
 # Predictive Modeling for Multi-Hospital Cardiac Diagnostics
 
-This repository contains the complete machine learning decision-support architecture and data engineering pipeline developed for the *Applied Machine Learning (Basic)* course. The architecture transitions an integrated multi-centric clinical database into a stable diagnostic portfolio designed to safely flag coronary artery disease while accounting for real-world administrative recording artifacts and geographic clinical imbalances.
+This repository implements an end-to-end predictive machine learning workflow to flag coronary artery disease using multi-hospital data from the UCI Heart Disease dataset. This project focus on realistic data engineering handling zero-masked recording artifacts, clinical missing values, and institutional intake skews across four international facilities. Instead of chasing naive accuracy, the final model portfolio is systematically tuned and evaluated on safety-critical metrics like Matthews Correlation Coefficient (MCC) and Recall.
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![Scikit-Learn](https://img.shields.io/badge/Library-Scikit--Learn-orange.svg)
 ![Area](https://img.shields.io/badge/Field-Bioinformatics-red.svg)
 ---
 
-## 👥 Course Metadata
-
-**Student Name**: Mirza Muhammad Hasan Ali 
-
-**Course**: Applied Machine Learning (Basic)
-
-**Instructors**: Prof. Daniele Bonacorsi & Dr. Luca Clissa 
+**Researcher:** Mirza Muhammad Hasan Ali  
+**Academic Institution:** University of Bologna  
+**Course:** Applied Machine Learning (Basic)  
+**Instructors:** Prof. Daniele Bonacorsi & Luca Clissa  
 
 ---
 
@@ -57,7 +54,7 @@ Extract the target compressed folder to locate the individual multi-hospital fil
 The repository architecture is strictly modularized to cleanly separate raw data streams, clinical preprocessing engines, grid-search hyperparameter tuning loops, reporting visual assets, and formal scholarly records:
 
 ```text
-Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics/
+Heart-Disease-Prediction-AML-Basic/
 ├── requirements.txt            # Unified library constraints ensuring project reproducibility
 ├── README.md                   # Core user onboarding documentation and metric scorecards
 │
@@ -88,7 +85,7 @@ Predictive-Modeling-Multi-Hospital-Cardiac-Diagnostics/
 │   └── final_feature_importance.png   # Horizontal bar plot charting global Random Forest Gini impurity cuts
 │
 └── Report/                     # Formal Scholarly Documentation
-    └── Applied_Machine_Learning_Heart_Disease_Triage_Analysis_Report.docx # Complete project report
+    └── Applied_Machine_Learning_Heart_Disease_Triage_Analysis_Report.pdf # Complete project report
 
 ```
 
@@ -121,24 +118,32 @@ Comprises 13 predictive feature fields mapped across demographic, physiological,
 The combined binary target label displays a balanced distribution consisting of 411 healthy profiles (44.7%) and 509 active disease profiles (55.3%), protecting downstream optimization from majority class collapsing shortcuts.
 
 ![Figure 1 - Global Class Prevalence Profile](Visuals/eda_class_distribution.png)
+> **Figure 1**
+> Distribution of target heart disease prevalence across the combined master dataset, establishing a highly functional global classification category baseline balance.
 
 * **Geographic Bifurcation**
 
 The Cleveland and Hungary sub-cohorts represent balanced outpatient screening environments. Conversely, the Switzerland (8 normal vs. 115 diseased) and VA Long Beach (50 normal vs. 148 diseased) registries function as high-acuity interventional tertiary units dominated by advanced pathology.
 
 ![Figure 2 - Center-Specific Bias and Geographic Variations](Visuals/eda_hospital_comparison.png)
+> **Figure 2**
+> Distribution of patient records and target cardiac disease prevalence across the four international clinical sites, exposing distinct reporting volumes and localized intake skews.
 
 * **Administrative Recording Artifact**
 
 A heavy, non-physiological spike resting precisely at 0 mg/dl was discovered in the continuous cholesterol distribution. Cross-referencing proved this trace belonged exclusively to the Switzerland and VA Long Beach registries, where lipid panel tests were routinely skipped during emergency intake triage.
 
 ![Figure 3 - Feature Scale Discrepancies and Cholesterol Artifact](Visuals/eda_clinical_distributions.png)
+> **Figure 3**
+> Physiological trend distributions tracking patient age (left) and serum cholesterol (right) grouped by diagnostic state, explicitly isolating the non-physiological recording anomaly at zero.
 
 * **Linear Associations**
 
 The variables with the highest positive linear correlation to heart disease are chest pain type (`cp`, $r = 0.47$) and exercise-induced angina (`exang`, $r = 0.45$), while maximum heart rate achieved (`thalach`, $r = -0.39$) exhibits a robust inverse relationship.
 
 ![Figure 4 - Clinical Feature Correlation Heatmap](Visuals/eda_correlation_heatmap.png)
+> **Figure 4**
+> Global correlation matrix mapping the linear relationship weights (r) between the 13 unified features and the binary heart disease target classification.
 
 ---
 
@@ -211,11 +216,15 @@ Locked to a soft margin strength of $C = 0.1$, the scale gamma coefficient, and 
 Evaluating initial out-of-sample unoptimized performance trends over a standard static baseline discovery partition consisting of an eighty-twenty data split:
 
 ![Figure 5 - Baseline Discovery Performance Chart](Visuals/clinical_model_comparison.png)
+> **Figure 5**
+> Comparative performance metrics of unoptimized default models evaluated over the simple baseline discovery eighty-twenty data partition split.
 
 ### 📊 Robust Clinical Audit (Optimized Portfolio)
 The final out-of-sample performance trends for our robust clinical audit following exhaustive hyperparameter optimization and five-fold cross-validation parameter sweeps:
 
 ![Figure 6 - Robust Clinical Audit Final Performance](Visuals/final_performance_comparison.png)
+> **Figure 6**
+> Final comparative performance metrics of hyperparameter-optimized models evaluated via robust five-fold cross-validation during the structural clinical performance audit.
 
 The optimized portfolio displays the following out-of-sample performance trends derived via robust 5-Fold Cross-Validation on the independent testing partition:
 
@@ -232,6 +241,8 @@ The optimized portfolio displays the following out-of-sample performance trends 
 Cross-referencing the compiled validation portfolio gallery isolates two clear operational pathways for deployment:
 
 ![Figure 7 - Diagnostic Validation Portfolio Gallery](Visuals/final_confusion_matrix_portfolio.png)
+> **Figure 7**
+> Diagnostic validation portfolio displaying the true negative, false positive, false negative, and true positive classification cell counts across all five optimized frameworks.
 
 * **The Balanced Auditor (Random Forest)**
 
@@ -247,6 +258,8 @@ Delivers an elite clinical safety ceiling by achieving a Recall score of 88.0%. 
 Extracting the global feature importance rankings based on the mean decrease in node Gini impurity across the 100 independent trees of the champion Random Forest ensemble verifies that the mathematical gradients converged on organic human biology rather than administrative data shortcuts:
 
 ![Figure 8 - Clinical Feature Importance](Visuals/final_feature_importance.png)
+> **Figure 8**
+> Global feature importance hierarchy ranking variables by their mean decrease in node Gini impurity across the optimized Random Forest ensemble.
 
 1. **Chest Pain Type (`cp`, Importance: 0.144)**
 
