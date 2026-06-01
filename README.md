@@ -296,7 +296,17 @@ Because our optimized support vector machine utilizes a non-linear Radial Basis 
 
 ---
 
-## 📊 9. Mathematical Audit Specifications
+## 🏆 9. Conclusion & Operational Directives
+
+This research project successfully demonstrates the transition from a messy, multi-centric clinical database into a highly stable, machine learning decision-support architecture. By utilizing an advanced data engineering pipeline driven by biomedical K-Nearest Neighbors multivariate imputation and strict stratified standardization, we successfully resolved intense multi-hospital collection skews and administrative recording artifacts without corrupting the underlying physiological dataset logic.
+
+Our final performance evaluation outlines a powerful diagnostic portfolio. For routine verification and hospital resource auditing tasks, the Random Forest ensemble provides the most reliable balance across all metrics ($MCC = 0.727$). For high-stakes preliminary screening lines where minimizing missed diagnoses is the single most critical task, the Support Vector Machine provides an elite clinical safety ceiling (88.0% Recall), ensuring high diagnostic protection across diverse patient cohorts.
+
+Ultimately, this study proves that machine learning models can extract universal cardiovascular risk structures from diverse data sources, provided that data-cleaning decisions are actively guided by exploratory domain auditing. To expand this pipeline further, the next logical engineering phase must involve testing these architectures against an entirely external, unintegrated hospital cohort to actively evaluate cross-border domain adaptation and algorithmic generalization boundaries under varying institutional testing constraints.
+
+---
+
+## 📊 10. Mathematical Audit Specifications
 
 To maintain absolute scientific transparency, all downstream evaluation metrics are derived directly from the four primary quadrants of the validation confusion matrix:
 
@@ -322,13 +332,3 @@ Healthy individuals incorrectly identified as sick, generating an unneeded false
 * **False Negative (FN)**
 
 Sick patients incorrectly identified as healthy, representing the single most critical failure rate to minimize in clinical diagnostics.
-
----
-
-## 🏆 10. Conclusion & Operational Directives
-
-This research project successfully demonstrates the transition from a messy, multi-centric clinical database into a highly stable, machine learning decision-support architecture. By utilizing an advanced data engineering pipeline driven by biomedical K-Nearest Neighbors multivariate imputation and strict stratified standardization, we successfully resolved intense multi-hospital collection skews and administrative recording artifacts without corrupting the underlying physiological dataset logic.
-
-Our final performance evaluation outlines a powerful diagnostic portfolio. For routine verification and hospital resource auditing tasks, the Random Forest ensemble provides the most reliable balance across all metrics ($MCC = 0.727$). For high-stakes preliminary screening lines where minimizing missed diagnoses is the single most critical task, the Support Vector Machine provides an elite clinical safety ceiling (88.0% Recall), ensuring high diagnostic protection across diverse patient cohorts.
-
-Ultimately, this study proves that machine learning models can extract universal cardiovascular risk structures from diverse data sources, provided that data-cleaning decisions are actively guided by exploratory domain auditing. To expand this pipeline further, the next logical engineering phase must involve testing these architectures against an entirely external, unintegrated hospital cohort to actively evaluate cross-border domain adaptation and algorithmic generalization boundaries under varying institutional testing constraints.
