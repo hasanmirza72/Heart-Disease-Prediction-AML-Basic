@@ -1,4 +1,4 @@
-# Predictive Modeling for Multi-Hospital Cardiac Diagnostics
+# 🫀 Predictive Modeling for Multi-Hospital Cardiac Diagnostics
 
 This repository implements an end-to-end predictive machine learning workflow to flag coronary artery disease using multi-hospital data from the UCI Heart Disease dataset. This project focus on realistic data engineering handling zero-masked recording artifacts, clinical missing values, and institutional intake skews across four international facilities. Instead of chasing naive accuracy, the final model portfolio is systematically tuned and evaluated on safety-critical metrics like Matthews Correlation Coefficient (MCC) and Recall.
 
@@ -85,7 +85,7 @@ Heart-Disease-Prediction-AML-Basic/
 │   └── final_feature_importance.png   # Horizontal bar plot charting global Random Forest Gini impurity cuts
 │
 └── Report/                     # Formal Scholarly Documentation
-    └── Applied_Machine_Learning_Heart_Disease_Triage_Analysis_Report.pdf # Complete project report
+    └── Predictive_Modeling_for_Multi_Hospital_Cardiac_Diagnostics.pdf # Complete project report
 
 ```
 
