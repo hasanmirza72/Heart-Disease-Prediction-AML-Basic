@@ -194,7 +194,7 @@ The split scales into an iterative five-fold stratified partitioning framework. 
 
 ## 🧠 6. Model Portfolio & Hyperparameter Configurations
 
-Five frameworks were evaluated using a `GridSearchCV` routine optimized specifically for the macro $F_1$-score to enforce balanced decision boundaries across both target categories:
+Five frameworks were evaluated using a `GridSearchCV` routine optimized to enforce balanced decision boundaries across both target categories:
 
 * **Baseline Logistic Regression**
 
