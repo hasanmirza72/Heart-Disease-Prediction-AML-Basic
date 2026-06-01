@@ -119,6 +119,7 @@ The combined binary target label displays a balanced distribution consisting of 
 
 ![Figure 1 - Global Class Prevalence Profile](Visuals/eda_class_distribution.png)
 > **Figure 1**
+
 > Distribution of target heart disease prevalence across the combined master dataset, establishing a highly functional global classification category baseline balance.
 
 * **Geographic Bifurcation**
@@ -127,6 +128,7 @@ The Cleveland and Hungary sub-cohorts represent balanced outpatient screening en
 
 ![Figure 2 - Center-Specific Bias and Geographic Variations](Visuals/eda_hospital_comparison.png)
 > **Figure 2**
+
 > Distribution of patient records and target cardiac disease prevalence across the four international clinical sites, exposing distinct reporting volumes and localized intake skews.
 
 * **Administrative Recording Artifact**
@@ -135,6 +137,7 @@ A heavy, non-physiological spike resting precisely at 0 mg/dl was discovered in 
 
 ![Figure 3 - Feature Scale Discrepancies and Cholesterol Artifact](Visuals/eda_clinical_distributions.png)
 > **Figure 3**
+
 > Physiological trend distributions tracking patient age (left) and serum cholesterol (right) grouped by diagnostic state, explicitly isolating the non-physiological recording anomaly at zero.
 
 * **Linear Associations**
@@ -143,6 +146,7 @@ The variables with the highest positive linear correlation to heart disease are 
 
 ![Figure 4 - Clinical Feature Correlation Heatmap](Visuals/eda_correlation_heatmap.png)
 > **Figure 4**
+
 > Global correlation matrix mapping the linear relationship weights (r) between the 13 unified features and the binary heart disease target classification.
 
 ---
@@ -217,6 +221,7 @@ Evaluating initial out-of-sample unoptimized performance trends over a standard 
 
 ![Figure 5 - Baseline Discovery Performance Chart](Visuals/clinical_model_comparison.png)
 > **Figure 5**
+
 > Comparative performance metrics of unoptimized default models evaluated over the simple baseline discovery eighty-twenty data partition split.
 
 ### 📊 Robust Clinical Audit (Optimized Portfolio)
@@ -224,6 +229,7 @@ The final out-of-sample performance trends for our robust clinical audit followi
 
 ![Figure 6 - Robust Clinical Audit Final Performance](Visuals/final_performance_comparison.png)
 > **Figure 6**
+
 > Final comparative performance metrics of hyperparameter-optimized models evaluated via robust five-fold cross-validation during the structural clinical performance audit.
 
 The optimized portfolio displays the following out-of-sample performance trends derived via robust 5-Fold Cross-Validation on the independent testing partition:
@@ -242,6 +248,7 @@ Cross-referencing the compiled validation portfolio gallery isolates two clear o
 
 ![Figure 7 - Diagnostic Validation Portfolio Gallery](Visuals/final_confusion_matrix_portfolio.png)
 > **Figure 7**
+
 > Diagnostic validation portfolio displaying the true negative, false positive, false negative, and true positive classification cell counts across all five optimized frameworks.
 
 * **The Balanced Auditor (Random Forest)**
@@ -259,6 +266,7 @@ Extracting the global feature importance rankings based on the mean decrease in 
 
 ![Figure 8 - Clinical Feature Importance](Visuals/final_feature_importance.png)
 > **Figure 8**
+
 > Global feature importance hierarchy ranking variables by their mean decrease in node Gini impurity across the optimized Random Forest ensemble.
 
 1. **Chest Pain Type (`cp`, Importance: 0.144)**
